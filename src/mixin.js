@@ -24,7 +24,7 @@ export const itemMixin = {
     clickEvent (event) {
       this.emitItemClick(event, this.item)
 
-      if ((!this.item.href && !this.item.child) || this.item.disabled) {
+      if ((!this.item.href && !this.item.child) || this.item.disabled || this.item.isChild) {
         event.preventDefault()
         return
       }
@@ -39,7 +39,7 @@ export const itemMixin = {
         } else if (this.showOneChild) this.emitActiveShow(null)
       } else {
         if (!this.item.href) event.preventDefault()
-        if (this.mobileItem && !this.childrenWhileCollapsed) return
+        if ((this.mobileItem && !this.childrenWhileCollapsed) || this.item.isChild) return
         if (this.showOneChild) {
           this.activeShow === this.item ? this.setActiveShow(false) : this.setActiveShow(true, this.item)
         } else {
