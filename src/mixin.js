@@ -34,7 +34,9 @@ export const itemMixin = {
       }
 
       if (!this.item.child) {
-        if (this.showOneChild) this.emitActiveShow(null)
+        if (this.childrenWhileCollapsed) {
+          this.setActiveShow(true, this.item)
+        } else if (this.showOneChild) this.emitActiveShow(null)
       } else {
         if (!this.item.href) event.preventDefault()
         if (this.mobileItem && !this.childrenWhileCollapsed) return
@@ -75,6 +77,10 @@ export const itemMixin = {
       return this.level === 1
     },
     show () {
+      if (this.childrenWhileCollapsed) {
+        console.log(this.item === this.activeShow)
+        return this.item === this.activeShow
+      }
       if (!this.item.child) return false
       if (this.showChild || this.mobileItem) return true
       if (this.isFirstLevel && this.showOneChild) {
