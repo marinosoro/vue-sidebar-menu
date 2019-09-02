@@ -14,7 +14,7 @@
   <div
     v-else-if="!isItemHidden"
     class="vsm--item"
-    :class="[{'vsm--item_open' : show}]"
+    :class="[{'vsm--item_open' : show, 'vsm--item_child': item.isChild}]"
     @mouseenter="mouseEnterEvent"
   >
     <template v-if="isRouterLink">

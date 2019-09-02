@@ -172,6 +172,7 @@ export default {
         retval.push(item)
         if (item.child && item.child.length > 0 && (this.isLinkActive(item) || this.isChildActive(item.child) || (!this.showOneChild && !item.isCollapsed))) {
           item.child.forEach((child) => {
+            child.isChild = true
             retval.push(child)
           })
         }
