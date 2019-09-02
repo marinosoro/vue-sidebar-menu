@@ -35,6 +35,7 @@
         :collapsed="collapsed"
         :theme="selectedTheme"
         :show-one-child="true"
+        :children-while-collapsed="true"
         @toggle-collapse="onToggleCollapse"
         @item-click="onItemClick"
       />

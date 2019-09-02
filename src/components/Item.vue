@@ -55,7 +55,7 @@
           </component>
           <span class="vsm--title">{{ item.title }}</span>
           <div
-            v-if="item.child"
+            v-if="item.child && !childrenWhileCollapsed"
             class="vsm--arrow"
             :class="[{'vsm--arrow_open' : show}, {'vsm--arrow_slot' : $slots['dropdown-icon']}]"
           >
@@ -178,6 +178,10 @@ export default {
       default: false
     },
     rtl: {
+      type: Boolean,
+      default: false
+    },
+    childrenWhileCollapsed: {
       type: Boolean,
       default: false
     }

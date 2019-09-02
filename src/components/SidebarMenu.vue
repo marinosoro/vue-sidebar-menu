@@ -10,7 +10,7 @@
       class="vsm--list"
     >
       <item
-        v-for="(item, index) in menu"
+        v-for="(item, index) in totalMenu"
         :key="index"
         :item="item"
         :is-collapsed="isCollapsed"
@@ -39,6 +39,7 @@
         :is-collapsed="isCollapsed"
         :show-child="showChild"
         :rtl="rtl"
+        :children-while-collapsed="childrenWhileCollapsed"
       >
         <slot
           slot="dropdown-icon"
@@ -63,7 +64,7 @@
           @beforeLeave="expandBeforeLeave"
         >
           <listItem
-            v-if="mobileItem && mobileItem.child"
+            v-if="mobileItem && mobileItem.child && !childrenWhileCollapsed"
             :items="mobileItem.child"
             :show-child="showChild"
             :rtl="rtl"
@@ -92,7 +93,7 @@
 <script>
 import Item from './Item.vue'
 import ListItem from './ListItem.vue'
-import { animationMixin } from '../mixin'
+import { animationMixin, itemMixin } from '../mixin'
 
 export default {
   name: 'SidebarMenu',
@@ -100,7 +101,7 @@ export default {
     Item,
     ListItem
   },
-  mixins: [animationMixin],
+  mixins: [animationMixin, itemMixin],
   props: {
     menu: {
       type: Array,
@@ -141,6 +142,10 @@ export default {
     hideToggle: {
       type: Boolean,
       default: false
+    },
+    childrenWhileCollapsed: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -158,6 +163,21 @@ export default {
     }
   },
   computed: {
+    totalMenu () {
+      if (!this.isCollapsed || !this.childrenWhileCollapsed) {
+        return this.menu
+      }
+      let retval = [];
+      this.menu.forEach((item) => {
+        retval.push(item)
+        if (item.child && item.child.length > 0 && (this.isLinkActive(item) || this.isChildActive(item.child) || (!this.showOneChild && !item.isCollapsed))) {
+          item.child.forEach((child) => {
+            retval.push(child)
+          })
+        }
+      })
+      return retval
+    },
     sidebarWidth () {
       return this.isCollapsed ? this.widthCollapsed : this.width
     },
