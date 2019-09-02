@@ -48,8 +48,13 @@ const separator = {
   template: `<hr style="border-color: rgba(0, 0, 0, 0.1); margin: 20px;">`
 }
 
+import SidebarItem from './components/SidebarItem'
+
 export default {
   name: 'App',
+  components: [
+    SidebarItem
+  ],
   data () {
     return {
       menu: [
@@ -62,6 +67,12 @@ export default {
           href: '/',
           title: 'Installation',
           icon: 'fa fa-download'
+        },
+        {
+          component: SidebarItem,
+          componentProps: {
+            test: 'abc'
+          }
         },
         {
           href: '/basic-usage',

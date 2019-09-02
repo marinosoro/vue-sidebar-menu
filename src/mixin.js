@@ -23,6 +23,7 @@ export const itemMixin = {
   methods: {
     clickEvent (event) {
       this.emitItemClick(event, this.item)
+      console.log(`[HREF] ${this.item.itemLinkHref}`)
 
       if ((!this.item.href && !this.item.child) || this.item.disabled || this.item.isChild) {
         event.preventDefault()
@@ -78,7 +79,6 @@ export const itemMixin = {
     },
     show () {
       if (this.childrenWhileCollapsed) {
-        console.log(this.item === this.activeShow)
         return this.item === this.activeShow
       }
       if (!this.item.child) return false

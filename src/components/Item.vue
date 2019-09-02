@@ -2,6 +2,7 @@
   <component
     :is="item.component"
     v-if="item.component && !isItemHidden"
+    v-bind="item.componentProps"
   />
   <div
     v-else-if="item.header && !isItemHidden"
@@ -184,6 +185,10 @@ export default {
     childrenWhileCollapsed: {
       type: Boolean,
       default: false
+    },
+    componentProps: {
+      type: Object,
+      default: null
     }
   }
 }
