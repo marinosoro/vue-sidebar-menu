@@ -17,6 +17,7 @@
         :active-show="activeShow"
         :show-one-child="showOneChild"
         :show-child="showChild"
+        :children-while-collapsed="childrenWhileCollapsed"
         :rtl="rtl"
         @set-mobile-item="setMobileItem"
         @unset-mobile-item="unsetMobileItem"
