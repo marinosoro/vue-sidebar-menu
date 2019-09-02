@@ -39,6 +39,7 @@
         :mobile-item="true"
         :is-collapsed="isCollapsed"
         :show-child="showChild"
+        :show-one-child="showOneChild"
         :rtl="rtl"
         :children-while-collapsed="childrenWhileCollapsed"
       >
@@ -68,6 +69,7 @@
             v-if="mobileItem && mobileItem.child && !childrenWhileCollapsed"
             :items="mobileItem.child"
             :show-child="showChild"
+            :show-one-child="showOneChild"
             :rtl="rtl"
             :is-collapsed="isCollapsed"
           >

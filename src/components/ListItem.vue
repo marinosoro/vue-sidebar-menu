@@ -6,6 +6,7 @@
       :item="subItem"
       :level="level"
       :show-child="showChild"
+      :show-one-child="showOneChild"
       :rtl="rtl"
       :is-collapsed="isCollapsed"
     >
@@ -29,6 +30,10 @@ export default {
       default: 2
     },
     showChild: {
+      type: Boolean,
+      default: false
+    },
+    showOneChild: {
       type: Boolean,
       default: false
     },

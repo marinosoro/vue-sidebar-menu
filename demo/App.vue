@@ -189,7 +189,7 @@ export default {
     onItemClick (event, item) {
       console.log('onItemClick')
       // console.log(event)
-      // console.log(item)
+      console.log(item)
     }
   }
 }
