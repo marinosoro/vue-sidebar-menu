@@ -37,7 +37,7 @@ export const itemMixin = {
         if (this.showOneChild) this.emitActiveShow(null)
       } else {
         if (!this.item.href) event.preventDefault()
-        if (this.mobileItem) return
+        if (this.mobileItem && !this.childrenWhileCollapsed) return
         if (this.showOneChild) {
           this.activeShow === this.item ? this.setActiveShow(false) : this.setActiveShow(true, this.item)
         } else {

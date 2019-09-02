@@ -8,8 +8,8 @@ $item-active-color: #fff !default;
 $item-open-color: #fff !default;
 $item-open-bg: $primary-color !default;
 
-$item-hover-color: #fff !default;
-$item-hover-bg: rgba(darken( $base-bg, 5% ), 0.5) !default;
+$item-hover-color: #1D385A !default;
+$item-hover-bg: #1D385A !important;
 
 $icon-color: #fff !default;
 $icon-bg: darken( $base-bg, 5% ) !default;
@@ -25,7 +25,7 @@ $mobile-icon-color: #fff !default;
 $mobile-item-bg: $primary-color !default;
 $mobile-icon-bg: $icon-open-bg !default;
 
-$dropdown-bg: lighten( $base-bg, 5% ) !default;
+$dropdown-bg: #007bff !default;
 $dropdown-color: #fff !default;
 
 $item-font-size: 16px !default;
