@@ -93,7 +93,7 @@
 <script>
 import Item from './Item.vue'
 import ListItem from './ListItem.vue'
-import { animationMixin, itemMixin } from '../mixin'
+import { animationMixin, activeMixin } from '../mixin'
 
 export default {
   name: 'SidebarMenu',
@@ -101,7 +101,7 @@ export default {
     Item,
     ListItem
   },
-  mixins: [animationMixin, itemMixin],
+  mixins: [animationMixin, activeMixin],
   props: {
     menu: {
       type: Array,

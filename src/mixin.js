@@ -21,36 +21,6 @@ export const itemMixin = {
     }
   },
   methods: {
-    isLinkActive (item) {
-      if (!item.href) return false
-      return this.matchRoute(item.href) || this.isAliasActive(item)
-    },
-    isChildActive (child) {
-      if (!child) return false
-      return child.some(item => {
-        return this.isLinkActive(item) || (item.child ? this.isChildActive(item.child) : false)
-      })
-    },
-    isAliasActive (item) {
-      if (item.alias) {
-        if (Array.isArray(item.alias)) {
-          return item.alias.some(alias => {
-            return this.matchRoute(alias)
-          })
-        } else {
-          return this.matchRoute(item.alias)
-        }
-      }
-      return false
-    },
-    matchRoute (itemRoute) {
-      if (this.$router) {
-        const { route } = this.$router.resolve(itemRoute)
-        return route.fullPath === this.$route.fullPath
-      } else {
-        return itemRoute === window.location.pathname + window.location.search + window.location.hash
-      }
-    },
     clickEvent (event) {
       this.emitItemClick(event, this.item)
 
@@ -146,6 +116,41 @@ export const itemMixin = {
     }
   },
   inject: ['emitActiveShow', 'emitItemClick']
+}
+
+export const activeMixin = {
+  methods: {
+    isLinkActive (item) {
+      if (!item.href) return false
+      return this.matchRoute(item.href) || this.isAliasActive(item)
+    },
+    isChildActive (child) {
+      if (!child) return false
+      return child.some(item => {
+        return this.isLinkActive(item) || (item.child ? this.isChildActive(item.child) : false)
+      })
+    },
+    isAliasActive (item) {
+      if (item.alias) {
+        if (Array.isArray(item.alias)) {
+          return item.alias.some(alias => {
+            return this.matchRoute(alias)
+          })
+        } else {
+          return this.matchRoute(item.alias)
+        }
+      }
+      return false
+    },
+    matchRoute (itemRoute) {
+      if (this.$router) {
+        const { route } = this.$router.resolve(itemRoute)
+        return route.fullPath === this.$route.fullPath
+      } else {
+        return itemRoute === window.location.pathname + window.location.search + window.location.hash
+      }
+    }
+  }
 }
 
 export const animationMixin = {

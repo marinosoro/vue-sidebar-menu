@@ -142,13 +142,13 @@
 
 <script>
 import ListItem from './ListItem.vue'
-import { itemMixin, animationMixin } from '../mixin'
+import { itemMixin, animationMixin, activeMixin } from '../mixin'
 
 export default {
   components: {
     ListItem
   },
-  mixins: [itemMixin, animationMixin],
+  mixins: [itemMixin, animationMixin, activeMixin],
   props: {
     item: {
       type: Object,
